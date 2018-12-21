@@ -1,8 +1,14 @@
-function calculateBonusXP(bXp, tXp, actionXp)
+function calculateBonusXP(params) --uses params
+	--Variable Declarators
+	local bXp = params.bXp
+	local tXp = params.tXp
+	local actionXp = params.actionXp
+	--existing logic from v1.
 	if(bXp>tXp)
-		return math.ceil(tXp/actionXp)
+		return math.ceil(tXp/(2*actionXp)) --if bonus XP > total XP, action count is 1/2 tXp/actionXp
 	else
-		totalActions = math.floor(bXp/actionXp)
-		runningXp = tXp+bXp%actionXp
-		totalActions += math.ceil(runningXp/actionXp)
-		return totalActions
+		totalActions = math.floor(bXp/(2*actionXp)) --Account for bXp giving 2x xp, add count of actions using full bXp.
+		runningXp = tXp+bXp%actionXp --add the remaining bXp to the running XP remainder.
+		totalActions += math.ceil(runningXp/actionXp) --add the count of actions not using bXp.
+		return totalActions --return int number of actions required.
+		return totalActions --return int number of actions required.
