@@ -1,0 +1,8 @@
+function calculateBonusXP(bXp, tXp, actionXp)
+	if(bXp>tXp)
+		return math.ceil(tXp/actionXp)
+	else
+		totalActions = math.floor(bXp/actionXp)
+		runningXp = tXp+bXp%actionXp
+		totalActions += math.ceil(runningXp/actionXp)
+		return totalActions
